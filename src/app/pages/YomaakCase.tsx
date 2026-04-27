@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router';
+import { motion } from 'motion/react';
+import { CaseNav } from '../components/CaseNav';
 
 type PrototypeState = 'search' | 'profile' | 'quote' | 'confirmation';
 type Language = 'en' | 'ar';
@@ -973,189 +975,143 @@ export function YomaakCase() {
 
   return (
     <div style={{ background: '#0A0A0A', color: '#F0EDE6', minHeight: '100vh' }}>
-      {/* Top bar */}
-      <div style={{
-        position: 'sticky',
-        top: 0,
-        background: 'rgba(10, 10, 10, 0.95)',
-        backdropFilter: 'blur(12px)',
-        borderBottom: '1px solid #1E1E1E',
-        padding: '20px 32px',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-        zIndex: 100,
-      }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-          <div style={{
-            width: 24,
-            height: 24,
-            borderRadius: '50%',
-            background: '#F0EDE6',
-            color: '#0A0A0A',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            fontSize: 13,
-            fontWeight: 500,
-          }}>
-            M
-          </div>
-          <span style={{ fontSize: 15, fontWeight: 500, color: '#F0EDE6' }}>
-            Moustafa Abdelmoneim
-          </span>
-        </div>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 20 }}>
-          <button
-            onClick={() => navigate('/')}
-            style={{
-              background: 'transparent',
-              border: 'none',
-              color: '#444',
-              fontFamily: 'JetBrains Mono, monospace',
-              fontSize: 11,
-              cursor: 'pointer',
-              transition: 'color 200ms ease',
-            }}
-            onMouseEnter={(e) => (e.currentTarget.style.color = '#F0EDE6')}
-            onMouseLeave={(e) => (e.currentTarget.style.color = '#444')}
-          >
-            Portfolio
-          </button>
-          <span style={{ color: '#222' }}>·</span>
-          <a
-            href="mailto:hello@example.com"
-            style={{
-              color: '#444',
-              fontFamily: 'JetBrains Mono, monospace',
-              fontSize: 11,
-              textDecoration: 'none',
-              transition: 'color 200ms ease',
-            }}
-            onMouseEnter={(e) => (e.currentTarget.style.color = '#F0EDE6')}
-            onMouseLeave={(e) => (e.currentTarget.style.color = '#444')}
-          >
-            Email
-          </a>
-          <span style={{ color: '#222' }}>·</span>
-          <a
-            href="https://linkedin.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            style={{
-              color: '#444',
-              fontFamily: 'JetBrains Mono, monospace',
-              fontSize: 11,
-              textDecoration: 'none',
-              transition: 'color 200ms ease',
-            }}
-            onMouseEnter={(e) => (e.currentTarget.style.color = '#F0EDE6')}
-            onMouseLeave={(e) => (e.currentTarget.style.color = '#444')}
-          >
-            LinkedIn
-          </a>
-        </div>
-      </div>
+      <CaseNav title="Yomaak B2B" />
 
       {/* Content */}
-      <div style={{ maxWidth: 720, margin: '0 auto', padding: '140px 32px 96px' }}>
+      <div style={{ maxWidth: 720, margin: '0 auto', padding: '104px 32px 96px' }}>
         {/* Meta */}
-        <div style={{
-          fontFamily: 'JetBrains Mono, monospace',
-          fontSize: 11,
-          color: '#444',
-          letterSpacing: '0.18em',
-          textTransform: 'uppercase',
-          marginBottom: 32,
-        }}>
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+          style={{
+            fontFamily: 'JetBrains Mono, monospace',
+            fontSize: 11,
+            color: '#444',
+            letterSpacing: '0.18em',
+            textTransform: 'uppercase',
+            marginBottom: 32,
+          }}
+        >
           CASE STUDY · SELF-INITIATED · APRIL 2026 · 3-DAY PROTOTYPE
-        </div>
+        </motion.div>
 
         {/* Hero */}
-        <h1 style={{
-          fontFamily: 'Inter, sans-serif',
-          fontSize: 'clamp(56px, 7vw, 88px)',
-          fontWeight: 300,
-          letterSpacing: '-0.03em',
-          lineHeight: 1.1,
-          color: '#F0EDE6',
-          marginBottom: 32,
-        }}>
+        <motion.h1
+          initial={{ opacity: 0, y: 28 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+          style={{
+            fontFamily: 'Bebas Neue, sans-serif',
+            fontSize: 'clamp(56px, 7vw, 88px)',
+            fontWeight: 400,
+            letterSpacing: '0.01em',
+            lineHeight: 1.0,
+            color: '#F0EDE6',
+            marginBottom: 32,
+          }}
+        >
           A B2B marketplace that lives{' '}
-          <span style={{ fontWeight: 600, color: '#0A5BFF' }}>inside</span>{' '}
+          <span style={{ color: '#0A5BFF' }}>inside</span>{' '}
           Claude.
-        </h1>
+        </motion.h1>
 
         {/* Deck */}
-        <p style={{
-          fontSize: 22,
-          fontWeight: 400,
-          color: '#888',
-          lineHeight: 1.5,
-          maxWidth: 580,
-          marginBottom: 48,
-          fontFamily: 'Inter, sans-serif',
-        }}>
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+          style={{
+            fontSize: 20,
+            fontWeight: 400,
+            color: '#666',
+            lineHeight: 1.55,
+            maxWidth: 580,
+            marginBottom: 48,
+            fontFamily: 'Barlow Condensed, sans-serif',
+            letterSpacing: '0.01em',
+          }}
+        >
           In January 2026, MCP Apps shipped. By April, every major SaaS was inside Claude.
           Almost all of them looked like dev demos. So I built one that didn't.
-        </p>
+        </motion.p>
 
         {/* Credits */}
         <div style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
-          gap: 24,
           borderTop: '1px solid #1E1E1E',
           borderBottom: '1px solid #1E1E1E',
           padding: '32px 0',
           marginBottom: 96,
         }}>
-          {[
-            { label: 'Role', value: 'Solo design + prototype' },
-            { label: 'Duration', value: '3 days, weekend build' },
-            { label: 'Output', value: 'Working MCP App + design system' },
-            { label: 'Stack', value: 'React, mcp-use, Claude Code' },
-          ].map((item) => (
-            <div key={item.label}>
-              <div style={{
-                fontFamily: 'JetBrains Mono, monospace',
-                fontSize: 11,
-                color: '#444',
-                textTransform: 'uppercase',
-                letterSpacing: '0.1em',
-                marginBottom: 8,
-              }}>
-                {item.label}
-              </div>
-              <div style={{ fontSize: 15, fontWeight: 500, color: '#F0EDE6', fontFamily: 'Inter, sans-serif' }}>
-                {item.value}
-              </div>
-            </div>
-          ))}
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
+            gap: 24,
+          }}>
+            {[
+              { label: 'Role', value: 'Solo design + prototype' },
+              { label: 'Duration', value: '3 days, weekend build' },
+              { label: 'Output', value: 'Working MCP App + design system' },
+              { label: 'Stack', value: 'React, mcp-use, Claude Code' },
+            ].map((item, i) => (
+              <motion.div
+                key={item.label}
+                initial={{ opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.3 + i * 0.08, ease: [0.16, 1, 0.3, 1] }}
+              >
+                <div style={{
+                  fontFamily: 'Space Mono, monospace',
+                  fontSize: 10,
+                  color: '#444',
+                  textTransform: 'uppercase',
+                  letterSpacing: '0.12em',
+                  marginBottom: 8,
+                }}>
+                  {item.label}
+                </div>
+                <div style={{ fontSize: 15, fontWeight: 500, color: '#F0EDE6', fontFamily: 'Barlow Condensed, sans-serif', letterSpacing: '0.02em', fontSize: 17 }}>
+                  {item.value}
+                </div>
+              </motion.div>
+            ))}
+          </div>
         </div>
 
         {/* Section 1: Thesis */}
-        <div style={{
-          fontFamily: 'JetBrains Mono, monospace',
-          fontSize: 11,
-          color: '#0A5BFF',
-          letterSpacing: '0.1em',
-          textTransform: 'uppercase',
-          marginBottom: 16,
-        }}>
+        <motion.div
+          initial={{ opacity: 0, x: -20 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true, amount: 0.8 }}
+          transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+          style={{
+            fontFamily: 'Space Mono, monospace',
+            fontSize: 10,
+            color: '#0A5BFF',
+            letterSpacing: '0.15em',
+            textTransform: 'uppercase',
+            marginBottom: 16,
+          }}
+        >
           01 / THESIS
-        </div>
+        </motion.div>
 
-        <h2 style={{
-          fontSize: 'clamp(32px, 4vw, 44px)',
-          fontWeight: 400,
-          letterSpacing: '-0.02em',
-          color: '#F0EDE6',
-          marginBottom: 32,
-          fontFamily: 'Inter, sans-serif',
-        }}>
-          The medium is <span style={{ color: '#0A5BFF', fontWeight: 600 }}>new</span>. Nobody knows what good looks like yet.
-        </h2>
+        <motion.h2
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.5 }}
+          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+          style={{
+            fontSize: 'clamp(32px, 4vw, 48px)',
+            fontWeight: 400,
+            letterSpacing: '-0.01em',
+            color: '#F0EDE6',
+            marginBottom: 32,
+            fontFamily: 'Bebas Neue, sans-serif',
+          }}
+        >
+          The medium is <span style={{ color: '#0A5BFF' }}>new</span>. Nobody knows what good looks like yet.
+        </motion.h2>
 
         <div style={{ fontSize: 17, lineHeight: 1.65, color: '#666', marginBottom: 96, fontFamily: 'Inter, sans-serif' }}>
           <p style={{ marginBottom: 24 }}>
@@ -1168,15 +1124,17 @@ export function YomaakCase() {
             I wanted to find out what would happen if a designer started from the constraints and worked backward.
           </p>
 
-          <div style={{
-            borderLeft: '3px solid #0A5BFF',
-            paddingLeft: 24,
-            marginBottom: 32,
-          }}>
-            <p style={{ fontSize: 28, fontWeight: 300, color: '#F0EDE6', lineHeight: 1.4, margin: 0 }}>
+          <motion.div
+            initial={{ opacity: 0, x: -16 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, amount: 0.6 }}
+            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+            style={{ borderLeft: '3px solid #0A5BFF', paddingLeft: 24, marginBottom: 32 }}
+          >
+            <p style={{ fontFamily: 'Barlow Condensed, sans-serif', fontSize: 28, fontWeight: 400, color: '#F0EDE6', lineHeight: 1.4, margin: 0, letterSpacing: '0.01em' }}>
               "What does it look like when a designer — not an engineer — builds for the inside of a conversation?"
             </p>
-          </div>
+          </motion.div>
 
           <p>
             I gave myself a weekend, a fictional brief, and a constraint I knew would force interesting decisions: build it for the Middle East market, in Arabic-first identity. RTL-by-default forces every layout decision to be re-examined.
@@ -1184,27 +1142,39 @@ export function YomaakCase() {
         </div>
 
         {/* Section 2: The Artifact */}
-        <div style={{
-          fontFamily: 'JetBrains Mono, monospace',
-          fontSize: 11,
-          color: '#0A5BFF',
-          letterSpacing: '0.1em',
-          textTransform: 'uppercase',
-          marginBottom: 16,
-        }}>
+        <motion.div
+          initial={{ opacity: 0, x: -20 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true, amount: 0.8 }}
+          transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+          style={{
+            fontFamily: 'Space Mono, monospace',
+            fontSize: 10,
+            color: '#0A5BFF',
+            letterSpacing: '0.15em',
+            textTransform: 'uppercase',
+            marginBottom: 16,
+          }}
+        >
           02 / THE ARTIFACT
-        </div>
+        </motion.div>
 
-        <h2 style={{
-          fontSize: 'clamp(32px, 4vw, 44px)',
-          fontWeight: 400,
-          letterSpacing: '-0.02em',
-          color: '#F0EDE6',
-          marginBottom: 16,
-          fontFamily: 'Inter, sans-serif',
-        }}>
-          Yomaak. <span style={{ color: '#0A5BFF', fontWeight: 600 }}>Try it.</span>
-        </h2>
+        <motion.h2
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.5 }}
+          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+          style={{
+            fontSize: 'clamp(32px, 4vw, 48px)',
+            fontWeight: 400,
+            letterSpacing: '-0.01em',
+            color: '#F0EDE6',
+            marginBottom: 16,
+            fontFamily: 'Bebas Neue, sans-serif',
+          }}
+        >
+          Yomaak. <span style={{ color: '#0A5BFF' }}>Try it.</span>
+        </motion.h2>
 
         <p style={{ fontSize: 17, lineHeight: 1.65, color: '#666', marginBottom: 48, fontFamily: 'Inter, sans-serif' }}>
           Below is the working prototype. The catalog is fictional but the interaction model is real — search, browse a vendor, request a quote, see confirmation. It mirrors how the widget would render inside a real Claude conversation.
@@ -1212,34 +1182,52 @@ export function YomaakCase() {
       </div>
 
       {/* Full-bleed prototype */}
-      <div style={{ marginBottom: 96 }}>
+      <motion.div
+        initial={{ opacity: 0, y: 32, scale: 0.98 }}
+        whileInView={{ opacity: 1, y: 0, scale: 1 }}
+        viewport={{ once: true, amount: 0.1 }}
+        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+        style={{ marginBottom: 96 }}
+      >
         <YomaakPrototype />
-      </div>
+      </motion.div>
 
       {/* Continue with article column */}
       <div style={{ maxWidth: 720, margin: '0 auto', padding: '0 32px 96px' }}>
         {/* Section 3: The Flow */}
-        <div style={{
-          fontFamily: 'JetBrains Mono, monospace',
-          fontSize: 11,
-          color: '#0A5BFF',
-          letterSpacing: '0.1em',
-          textTransform: 'uppercase',
-          marginBottom: 16,
-        }}>
+        <motion.div
+          initial={{ opacity: 0, x: -20 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true, amount: 0.8 }}
+          transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+          style={{
+            fontFamily: 'Space Mono, monospace',
+            fontSize: 10,
+            color: '#0A5BFF',
+            letterSpacing: '0.15em',
+            textTransform: 'uppercase',
+            marginBottom: 16,
+          }}
+        >
           03 / THE FLOW
-        </div>
+        </motion.div>
 
-        <h2 style={{
-          fontSize: 'clamp(32px, 4vw, 44px)',
-          fontWeight: 400,
-          letterSpacing: '-0.02em',
-          color: '#F0EDE6',
-          marginBottom: 32,
-          fontFamily: 'Inter, sans-serif',
-        }}>
-          One conversation. <span style={{ color: '#0A5BFF', fontWeight: 600 }}>Four</span> states. No tabs.
-        </h2>
+        <motion.h2
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.5 }}
+          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+          style={{
+            fontSize: 'clamp(32px, 4vw, 48px)',
+            fontWeight: 400,
+            letterSpacing: '-0.01em',
+            color: '#F0EDE6',
+            marginBottom: 32,
+            fontFamily: 'Bebas Neue, sans-serif',
+          }}
+        >
+          One conversation. <span style={{ color: '#0A5BFF' }}>Four</span> states. No tabs.
+        </motion.h2>
 
         <div style={{ fontSize: 17, lineHeight: 1.65, color: '#666', marginBottom: 96, fontFamily: 'Inter, sans-serif' }}>
           <p style={{ marginBottom: 24 }}>
@@ -1251,27 +1239,39 @@ export function YomaakCase() {
         </div>
 
         {/* Section 4: The System */}
-        <div style={{
-          fontFamily: 'JetBrains Mono, monospace',
-          fontSize: 11,
-          color: '#0A5BFF',
-          letterSpacing: '0.1em',
-          textTransform: 'uppercase',
-          marginBottom: 16,
-        }}>
+        <motion.div
+          initial={{ opacity: 0, x: -20 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true, amount: 0.8 }}
+          transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+          style={{
+            fontFamily: 'Space Mono, monospace',
+            fontSize: 10,
+            color: '#0A5BFF',
+            letterSpacing: '0.15em',
+            textTransform: 'uppercase',
+            marginBottom: 16,
+          }}
+        >
           04 / THE SYSTEM
-        </div>
+        </motion.div>
 
-        <h2 style={{
-          fontSize: 'clamp(32px, 4vw, 44px)',
-          fontWeight: 400,
-          letterSpacing: '-0.02em',
-          color: '#F0EDE6',
-          marginBottom: 32,
-          fontFamily: 'Inter, sans-serif',
-        }}>
-          Behind every widget: a small <span style={{ color: '#0A5BFF', fontWeight: 600 }}>alphabet</span> of primitives.
-        </h2>
+        <motion.h2
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.5 }}
+          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+          style={{
+            fontSize: 'clamp(32px, 4vw, 48px)',
+            fontWeight: 400,
+            letterSpacing: '-0.01em',
+            color: '#F0EDE6',
+            marginBottom: 32,
+            fontFamily: 'Bebas Neue, sans-serif',
+          }}
+        >
+          Behind every widget: a small <span style={{ color: '#0A5BFF' }}>alphabet</span> of primitives.
+        </motion.h2>
 
         <div style={{ fontSize: 17, lineHeight: 1.65, color: '#666', marginBottom: 48, fontFamily: 'Inter, sans-serif' }}>
           <p style={{ marginBottom: 24 }}>
@@ -1283,13 +1283,19 @@ export function YomaakCase() {
         </div>
 
         {/* Primitive recipe */}
-        <div style={{
-          background: '#141414',
-          border: '1px solid #2A2A2A',
-          borderRadius: 12,
-          padding: '48px 40px',
-          marginBottom: 96,
-        }}>
+        <motion.div
+          initial={{ opacity: 0, y: 32 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+          style={{
+            background: '#141414',
+            border: '1px solid #2A2A2A',
+            borderRadius: 12,
+            padding: '48px 40px',
+            marginBottom: 96,
+          }}
+        >
           <div style={{
             fontFamily: 'JetBrains Mono, monospace',
             fontSize: 11,
@@ -1385,30 +1391,42 @@ export function YomaakCase() {
           }}>
             This recipe is not unique to Yomaak B2B. The same primitives, in different arrangements, also produce a flight card, a hotel listing, a restaurant site, a podcast row. The thing that makes them Yomaak — or Turkish Airlines, or a roastery app — is not the component vocabulary. It is how the primitives map to brand tokens.
           </p>
-        </div>
+        </motion.div>
 
         {/* Section 5: Principles */}
-        <div style={{
-          fontFamily: 'JetBrains Mono, monospace',
-          fontSize: 11,
-          color: '#0A5BFF',
-          letterSpacing: '0.1em',
-          textTransform: 'uppercase',
-          marginBottom: 16,
-        }}>
+        <motion.div
+          initial={{ opacity: 0, x: -20 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true, amount: 0.8 }}
+          transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+          style={{
+            fontFamily: 'Space Mono, monospace',
+            fontSize: 10,
+            color: '#0A5BFF',
+            letterSpacing: '0.15em',
+            textTransform: 'uppercase',
+            marginBottom: 16,
+          }}
+        >
           05 / PRINCIPLES
-        </div>
+        </motion.div>
 
-        <h2 style={{
-          fontSize: 'clamp(32px, 4vw, 44px)',
-          fontWeight: 400,
-          letterSpacing: '-0.02em',
-          color: '#F0EDE6',
-          marginBottom: 48,
-          fontFamily: 'Inter, sans-serif',
-        }}>
-          What <span style={{ color: '#0A5BFF', fontWeight: 600 }}>does not</span> bend across clients.
-        </h2>
+        <motion.h2
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.5 }}
+          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+          style={{
+            fontSize: 'clamp(32px, 4vw, 48px)',
+            fontWeight: 400,
+            letterSpacing: '-0.01em',
+            color: '#F0EDE6',
+            marginBottom: 48,
+            fontFamily: 'Bebas Neue, sans-serif',
+          }}
+        >
+          What <span style={{ color: '#0A5BFF' }}>does not</span> bend across clients.
+        </motion.h2>
 
         <div style={{ marginBottom: 96 }}>
           {[
@@ -1433,8 +1451,12 @@ export function YomaakCase() {
               desc: 'WCAG AA contrast enforced at the token layer. Brands cannot ship a palette that fails.',
             },
           ].map((principle, i) => (
-            <div
+            <motion.div
               key={i}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.4 }}
+              transition={{ duration: 0.5, delay: i * 0.07, ease: [0.16, 1, 0.3, 1] }}
               style={{
                 display: 'grid',
                 gridTemplateColumns: '60px 1fr',
@@ -1445,19 +1467,21 @@ export function YomaakCase() {
               }}
             >
               <div style={{
-                fontFamily: 'JetBrains Mono, monospace',
-                fontSize: 14,
-                color: '#444',
+                fontFamily: 'Space Mono, monospace',
+                fontSize: 12,
+                color: '#333',
               }}>
                 0{i + 1}
               </div>
               <div>
                 <h3 style={{
                   fontSize: 22,
-                  fontWeight: 500,
+                  fontWeight: 400,
                   color: '#F0EDE6',
                   marginBottom: 12,
-                  fontFamily: 'Inter, sans-serif',
+                  fontFamily: 'Bebas Neue, sans-serif',
+                  letterSpacing: '0.02em',
+                  fontSize: 24,
                 }}>
                   {principle.title}
                 </h3>
@@ -1471,17 +1495,23 @@ export function YomaakCase() {
                   {principle.desc}
                 </p>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
 
         {/* Closing */}
-        <div style={{
-          background: '#0A1628',
-          borderRadius: 12,
-          padding: 56,
-          marginBottom: 80,
-        }}>
+        <motion.div
+          initial={{ opacity: 0, y: 40, scale: 0.97 }}
+          whileInView={{ opacity: 1, y: 0, scale: 1 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+          style={{
+            background: '#0A1628',
+            borderRadius: 12,
+            padding: 56,
+            marginBottom: 80,
+          }}
+        >
           <div style={{
             fontFamily: 'JetBrains Mono, monospace',
             fontSize: 11,
@@ -1519,7 +1549,7 @@ export function YomaakCase() {
               That last question is the one I would want to spend the next year answering. Yomaak is the first sketch of an answer. Everything else — the polished case study, the working demo, the system spec, the principles — is just evidence that I am already inside the problem.
             </p>
           </div>
-        </div>
+        </motion.div>
 
         {/* Footer */}
         <div style={{ borderTop: '1px solid #1E1E1E', paddingTop: 56 }}>

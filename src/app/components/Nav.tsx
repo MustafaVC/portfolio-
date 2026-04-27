@@ -1,15 +1,22 @@
 import { useEffect, useState } from 'react';
 import { motion } from 'motion/react';
+import logoSrc from '../../imports/logo.png';
 
 const links = ['Work', 'About', 'Contact'];
 
 export function Nav() {
   const [scrolled, setScrolled] = useState(false);
+  const [logoRotation, setLogoRotation] = useState(0);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
+  useEffect(() => {
+    const t = setInterval(() => setLogoRotation(r => r + 360), 10000);
+    return () => clearInterval(t);
   }, []);
 
   const scrollTo = (label: string) => {
@@ -44,21 +51,16 @@ export function Nav() {
         initial={{ opacity: 0, scale: 0.8 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-        className="flex items-center justify-center"
-        style={{
-          width: 36,
-          height: 36,
-          borderRadius: '50%',
-          border: '1.5px solid #FFFFFF',
-          color: '#FFFFFF',
-          fontFamily: 'Space Mono, monospace',
-          fontSize: 13,
-          letterSpacing: '-0.02em',
-          cursor: 'pointer',
-        }}
+        style={{ cursor: 'pointer', width: 36, height: 36 }}
         onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
       >
-        MA
+        <motion.img
+          src={logoSrc}
+          alt="Mustafa Studio"
+          animate={{ rotate: logoRotation }}
+          transition={{ duration: 1.2, ease: [0.4, 0, 0.2, 1] }}
+          style={{ width: 36, height: 36, display: 'block' }}
+        />
       </motion.div>
 
       {/* Nav links */}

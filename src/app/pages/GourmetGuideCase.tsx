@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router';
 import { ImageWithFallback } from '../components/figma/ImageWithFallback';
+import { CaseNav } from '../components/CaseNav';
 
 const IMG_HERO   = 'https://images.unsplash.com/photo-1482148829819-e32810d7e13a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=1600&q=80';
 const IMG_FOOD   = 'https://images.unsplash.com/photo-1768051313568-b35886b9a093?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=1200&q=80';
@@ -140,54 +141,7 @@ export function GourmetGuideCase() {
   return (
     <div style={{ background: '#0A0A0A', color: '#F0EDE6' }}>
 
-      {/* ── Sticky case-study nav ── */}
-      <nav
-        className="fixed top-0 left-0 right-0 z-40 flex items-center justify-between px-8 md:px-12"
-        style={{
-          height: 64,
-          background: 'rgba(10,10,10,0.85)',
-          backdropFilter: 'blur(12px)',
-          borderBottom: '1px solid #222',
-        }}
-      >
-        <button
-          onClick={() => navigate('/')}
-          style={{
-            display: 'flex', alignItems: 'center', gap: 10,
-            background: 'none', border: 'none', cursor: 'none',
-            color: '#555', fontFamily: 'Space Mono, monospace',
-            fontSize: 10, letterSpacing: '0.12em', textTransform: 'uppercase',
-            transition: 'color 200ms ease', padding: 0,
-          }}
-          onMouseEnter={e => (e.currentTarget.style.color = '#F0EDE6')}
-          onMouseLeave={e => (e.currentTarget.style.color = '#555')}
-        >
-          <svg width="14" height="10" viewBox="0 0 14 10" fill="none">
-            <path d="M13 5H1M1 5L5 1M1 5L5 9" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/>
-          </svg>
-          Back
-        </button>
-
-        <span style={{
-          fontFamily: 'Space Mono, monospace', fontSize: 10,
-          color: '#333', letterSpacing: '0.12em', textTransform: 'uppercase',
-        }}>
-          Case Study — GourmetGuide
-        </span>
-
-        <div
-          onClick={() => navigate('/')}
-          style={{
-            width: 36, height: 36, borderRadius: '50%',
-            border: '1.5px solid #FFFFFF', color: '#FFFFFF',
-            fontFamily: 'Space Mono, monospace', fontSize: 13,
-            letterSpacing: '-0.02em', cursor: 'none',
-            display: 'flex', alignItems: 'center', justifyContent: 'center',
-          }}
-        >
-          MA
-        </div>
-      </nav>
+      <CaseNav title="GourmetGuide" />
 
       {/* ── Hero ── */}
       <div style={{ paddingTop: 64, position: 'relative', overflow: 'hidden' }}>
