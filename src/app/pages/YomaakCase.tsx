@@ -1,7 +1,17 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router';
 import { motion } from 'motion/react';
 import { CaseNav } from '../components/CaseNav';
+
+function useIsMobile(breakpoint = 600) {
+  const [isMobile, setIsMobile] = useState(() => window.innerWidth < breakpoint);
+  useEffect(() => {
+    const handler = () => setIsMobile(window.innerWidth < breakpoint);
+    window.addEventListener('resize', handler, { passive: true });
+    return () => window.removeEventListener('resize', handler);
+  }, [breakpoint]);
+  return isMobile;
+}
 
 type PrototypeState = 'search' | 'profile' | 'quote' | 'confirmation';
 type Language = 'en' | 'ar';
@@ -137,6 +147,7 @@ function YomaakPrototype() {
   const [lang, setLang] = useState<Language>('en');
   const [selectedVendor, setSelectedVendor] = useState<Vendor | null>(null);
   const [quantity, setQuantity] = useState(500);
+  const isMobile = useIsMobile();
 
   const isRTL = lang === 'ar';
 
@@ -162,8 +173,12 @@ function YomaakPrototype() {
               <div key={i} style={{ width: 10, height: 10, borderRadius: '50%', background: c }} />
             ))}
           </div>
-          <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: 11, color: '#5B6B82' }}>
-            claude.ai · /chat · MCP App: yomaak-b2b
+          <span style={{
+            fontFamily: 'JetBrains Mono, monospace', fontSize: 11, color: '#5B6B82',
+            overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap',
+            maxWidth: isMobile ? 120 : 'none',
+          }}>
+            {isMobile ? 'yomaak-b2b' : 'claude.ai · /chat · MCP App: yomaak-b2b'}
           </span>
           <button
             onClick={() => setLang(lang === 'en' ? 'ar' : 'en')}
@@ -185,7 +200,7 @@ function YomaakPrototype() {
         {/* Chat interface */}
         <div style={{
           background: '#FAFBFC',
-          padding: 32,
+          padding: isMobile ? 16 : 32,
           minHeight: 500,
           fontFamily: 'Inter, sans-serif',
           direction: isRTL ? 'rtl' : 'ltr',
@@ -327,9 +342,10 @@ function YomaakPrototype() {
                             background: '#FFFFFF',
                             border: '1px solid #E5E9F0',
                             borderRadius: 6,
-                            padding: 16,
+                            padding: isMobile ? 12 : 16,
                             display: 'flex',
-                            gap: 16,
+                            flexDirection: isMobile ? 'column' : 'row',
+                            gap: isMobile ? 12 : 16,
                             transition: 'border-color 200ms ease, transform 200ms ease',
                             cursor: 'pointer',
                           }}
@@ -344,8 +360,8 @@ function YomaakPrototype() {
                         >
                           {/* Region block */}
                           <div style={{
-                            width: 96,
-                            height: 96,
+                            width: isMobile ? '100%' : 96,
+                            height: isMobile ? 44 : 96,
                             background: 'linear-gradient(135deg, #EBF1FF 0%, #FFFFFF 100%)',
                             borderRadius: 4,
                             display: 'flex',
@@ -386,7 +402,7 @@ function YomaakPrototype() {
                             <div style={{
                               display: 'grid',
                               gridTemplateColumns: '1fr 1fr 1fr',
-                              gap: 16,
+                              gap: isMobile ? 8 : 16,
                               borderTop: '1px solid #E5E9F0',
                               borderBottom: '1px solid #E5E9F0',
                               padding: '10px 0',
@@ -439,8 +455,14 @@ function YomaakPrototype() {
                             </div>
 
                             {/* Actions */}
-                            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 10 }}>
-                              <div style={{ display: 'flex', gap: 10 }}>
+                            <div style={{
+                              display: 'flex',
+                              flexDirection: isMobile ? 'column' : 'row',
+                              alignItems: isMobile ? 'stretch' : 'center',
+                              justifyContent: 'space-between',
+                              gap: 10,
+                            }}>
+                              <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
                                 <button
                                   onClick={(e) => {
                                     e.stopPropagation();
@@ -452,10 +474,11 @@ function YomaakPrototype() {
                                     color: '#FFFFFF',
                                     border: 'none',
                                     borderRadius: 6,
-                                    padding: '10px 20px',
-                                    fontSize: 13,
+                                    padding: isMobile ? '10px 16px' : '10px 20px',
+                                    fontSize: isMobile ? 12 : 13,
                                     fontWeight: 500,
                                     cursor: 'pointer',
+                                    flex: isMobile ? 1 : undefined,
                                     transition: 'background 200ms ease',
                                   }}
                                   onMouseEnter={(e) => (e.currentTarget.style.background = '#0A5BFF')}
@@ -474,10 +497,11 @@ function YomaakPrototype() {
                                     color: '#0A1628',
                                     border: '1px solid #E5E9F0',
                                     borderRadius: 6,
-                                    padding: '10px 20px',
-                                    fontSize: 13,
+                                    padding: isMobile ? '10px 16px' : '10px 20px',
+                                    fontSize: isMobile ? 12 : 13,
                                     fontWeight: 500,
                                     cursor: 'pointer',
+                                    flex: isMobile ? 1 : undefined,
                                     transition: 'border-color 200ms ease',
                                   }}
                                   onMouseEnter={(e) => (e.currentTarget.style.borderColor = '#0A1628')}
@@ -486,24 +510,26 @@ function YomaakPrototype() {
                                   {isRTL ? 'الملف الشخصي' : 'Profile'}
                                 </button>
                               </div>
-                              <div style={{ display: 'flex', gap: 6 }}>
-                                {(isRTL ? vendor.certsAr : vendor.certs).map((cert) => (
-                                  <span
-                                    key={cert}
-                                    style={{
-                                      fontFamily: 'JetBrains Mono, monospace',
-                                      fontSize: 9,
-                                      color: '#5B6B82',
-                                      background: '#F4F6FA',
-                                      padding: '4px 8px',
-                                      borderRadius: 3,
-                                      textTransform: 'uppercase',
-                                    }}
-                                  >
-                                    {cert}
-                                  </span>
-                                ))}
-                              </div>
+                              {!isMobile && (
+                                <div style={{ display: 'flex', gap: 6 }}>
+                                  {(isRTL ? vendor.certsAr : vendor.certs).map((cert) => (
+                                    <span
+                                      key={cert}
+                                      style={{
+                                        fontFamily: 'JetBrains Mono, monospace',
+                                        fontSize: 9,
+                                        color: '#5B6B82',
+                                        background: '#F4F6FA',
+                                        padding: '4px 8px',
+                                        borderRadius: 3,
+                                        textTransform: 'uppercase',
+                                      }}
+                                    >
+                                      {cert}
+                                    </span>
+                                  ))}
+                                </div>
+                              )}
                             </div>
                           </div>
                         </div>
@@ -548,8 +574,8 @@ function YomaakPrototype() {
 
                     <div style={{
                       display: 'grid',
-                      gridTemplateColumns: '1fr 1fr 1fr',
-                      gap: 24,
+                      gridTemplateColumns: isMobile ? '1fr 1fr' : '1fr 1fr 1fr',
+                      gap: isMobile ? 16 : 24,
                       marginBottom: 32,
                       padding: '20px 0',
                       borderTop: '1px solid #E5E9F0',
@@ -670,7 +696,7 @@ function YomaakPrototype() {
                       {isRTL ? 'طلب عرض سعر' : 'Request quote'}
                     </h2>
 
-                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 20, marginBottom: 20 }}>
+                    <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap: 20, marginBottom: 20 }}>
                       <div>
                         <label style={{
                           display: 'block',
@@ -1070,7 +1096,7 @@ export function YomaakCase() {
                 }}>
                   {item.label}
                 </div>
-                <div style={{ fontSize: 15, fontWeight: 500, color: '#F0EDE6', fontFamily: 'Barlow Condensed, sans-serif', letterSpacing: '0.02em', fontSize: 17 }}>
+                <div style={{ fontSize: 17, fontWeight: 500, color: '#F0EDE6', fontFamily: 'Barlow Condensed, sans-serif', letterSpacing: '0.02em' }}>
                   {item.value}
                 </div>
               </motion.div>
@@ -1475,13 +1501,12 @@ export function YomaakCase() {
               </div>
               <div>
                 <h3 style={{
-                  fontSize: 22,
+                  fontSize: 24,
                   fontWeight: 400,
                   color: '#F0EDE6',
                   marginBottom: 12,
                   fontFamily: 'Bebas Neue, sans-serif',
                   letterSpacing: '0.02em',
-                  fontSize: 24,
                 }}>
                   {principle.title}
                 </h3>

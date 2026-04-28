@@ -51,7 +51,7 @@ export function Nav() {
         initial={{ opacity: 0, scale: 0.8 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-        style={{ cursor: 'pointer', width: 36, height: 36 }}
+        style={{ cursor: 'pointer', width: 24, height: 24 }}
         onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
       >
         <motion.img
@@ -59,7 +59,7 @@ export function Nav() {
           alt="Mustafa Studio"
           animate={{ rotate: logoRotation }}
           transition={{ duration: 1.2, ease: [0.4, 0, 0.2, 1] }}
-          style={{ width: 36, height: 36, display: 'block' }}
+          style={{ width: 24, height: 24, display: 'block' }}
         />
       </motion.div>
 
